@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episodes - The Global Couch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script defer>
+        const EpisodeCard = ({ title, description }) => (
+            <div className="relative bg-white border border-gray-300 rounded-lg p-6 text-center shadow-lg mb-8">
+                <div className="absolute top-2 left-[-30px] bg-red-600 text-white text-sm font-bold py-1 px-4 transform rotate-[-45deg] shadow-md">
+                    Coming Soon
+                </div>
+                <h2 className="text-xl font-semibold mb-2">{title}</h2>
+                <p className="text-gray-600">{description}</p>
+            </div>
+        );
+
+        const App = () => (
+            <div className="container mx-auto px-4 py-8">
+                <EpisodeCard title="Episode 1" description="Stay tuned for the first episode of The Global Couch!" />
+                <EpisodeCard title="Episode 2" description="More exciting content is on the way. Stay tuned!" />
+            </div>
+        );
+
+        document.addEventListener("DOMContentLoaded", () => {
+            ReactDOM.render(<App />, document.getElementById("root"));
+        });
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-gray-800 text-white py-4 text-center">
+        <h1 class="text-2xl font-bold">The Global Couch - Episodes</h1>
+    </header>
+    <div id="root"></div>
+    <footer class="bg-gray-800 text-white py-4 text-center mt-8">
+        <p>&copy; <span id="year"></span> The Global Couch. <a href="/contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
+    </footer>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
