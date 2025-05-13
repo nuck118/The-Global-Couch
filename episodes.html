@@ -3,11 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore all episodes of The Global Couch Podcast.">
     <title>Episodes - The Global Couch</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script defer>
+</head>
+<body class="font-sans bg-gray-100">
+    <!-- Navbar -->
+    <header class="bg-black text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <a href="index.html" class="text-2xl font-bold text-pink-500">The Global Couch</a>
+            <nav class="hidden md:flex">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html#about" class="hover:text-blue-500">About</a></li>
+                    <li><a href="episodes.html" class="hover:text-blue-500">Episodes</a></li>
+                    <li><a href="index.html#hosts" class="hover:text-blue-500">Hosts</a></li>
+                    <li><a href="index.html#contact" class="hover:text-blue-500">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-2xl" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+                <i class="fas fa-bars text-pink-500"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-60 flex items-center justify-center text-white text-center bg-pink-500">
+        <div class="relative z-10 p-8">
+            <h1 class="text-4xl font-bold">Episodes</h1>
+            <p class="text-lg mt-2">Explore our latest episodes and inspiring stories.</p>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <main id="root" class="main-content py-16 px-4">
+        <!-- React will render the episodes here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <h4 class="text-lg font-semibold text-pink-500">Quick Links</h4>
+                <ul class="mt-2 space-y-2">
+                    <li><a href="index.html#about" class="hover:text-blue-500">About</a></li>
+                    <li><a href="episodes.html" class="hover:text-blue-500">Episodes</a></li>
+                    <li><a href="index.html#contact" class="hover:text-blue-500">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-pink-500">Legal</h4>
+                <ul class="mt-2 space-y-2">
+                    <li><a href="#" class="hover:text-blue-500">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-blue-500">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-pink-500">Connect</h4>
+                <div class="mt-2 space-x-4">
+                    <a href="https://www.linkedin.com/company/the-global-couch-podcast/" class="text-blue-500 text-2xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-blue-500 text-2xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-blue-500 text-2xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-6">
+            <p>&copy; <span id="current-year"></span> The Global Couch Podcast. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // React components for episodes
         const EpisodeCard = ({ title, description }) => (
             <div className="relative bg-white border border-gray-300 rounded-lg p-6 text-center shadow-lg mb-8">
                 <div className="absolute top-2 left-[-30px] bg-red-600 text-white text-sm font-bold py-1 px-4 transform rotate-[-45deg] shadow-md">
@@ -28,18 +98,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             ReactDOM.render(<App />, document.getElementById("root"));
         });
-    </script>
-</head>
-<body class="bg-gray-100 text-gray-800">
-    <header class="bg-gray-800 text-white py-4 text-center">
-        <h1 class="text-2xl font-bold">The Global Couch - Episodes</h1>
-    </header>
-    <div id="root"></div>
-    <footer class="bg-gray-800 text-white py-4 text-center mt-8">
-        <p>&copy; <span id="year"></span> The Global Couch. <a href="/contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
-    </footer>
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
