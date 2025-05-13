@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The Global Couch Podcast explores stories from around the world with engaging discussions and inspiring guests.">
     <title>The Global Couch Podcast</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -25,12 +26,12 @@
                             <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
                         </ul>
                     </nav>
-                    <button class="md:hidden text-2xl" id="mobile-menu-toggle" aria-label="Open menu">
+                    <button class="md:hidden text-2xl" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
                         <i class="fas fa-bars text-pink-500"></i>
                     </button>
                 </div>
                 <div id="mobile-nav" class="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center space-y-6 text-xl hidden z-50">
-                    <button id="mobile-nav-close" class="absolute top-6 right-6 text-3xl text-white" aria-label="Close menu">
+                    <button id="mobile-nav-close" class="absolute top-6 right-6 text-3xl text-white" aria-label="Close menu" aria-expanded="true">
                         <i class="fas fa-times"></i>
                     </button>
                     <ul class="text-center space-y-4">
@@ -50,38 +51,41 @@
             const mobileNav = document.getElementById('mobile-nav');
             const mobileClose = document.getElementById('mobile-nav-close');
 
-            // Mobile menu functionality
-            mobileToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                mobileNav.classList.remove('hidden');
-                document.body.classList.add('overflow-hidden');
-            });
-
-            mobileClose.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeMobileMenu();
-            });
-
-            // Close mobile nav when clicking outside it
-            document.addEventListener('click', (e) => {
-                if (!mobileNav.classList.contains('hidden') &&
-                    !mobileNav.contains(e.target) &&
-                    !mobileToggle.contains(e.target)) {
-                    closeMobileMenu();
-                }
-            });
-
-            // Close mobile menu on clicking any nav link
-            const navLinks = mobileNav.querySelectorAll('a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    setTimeout(closeMobileMenu, 100);
+            // Ensure elements exist before adding event listeners
+            if (mobileToggle && mobileNav && mobileClose) {
+                // Mobile menu functionality
+                mobileToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    mobileNav.classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden');
                 });
-            });
 
-            function closeMobileMenu() {
-                mobileNav.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
+                mobileClose.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeMobileMenu();
+                });
+
+                // Close mobile nav when clicking outside it
+                document.addEventListener('click', (e) => {
+                    if (!mobileNav.classList.contains('hidden') &&
+                        !mobileNav.contains(e.target) &&
+                        !mobileToggle.contains(e.target)) {
+                        closeMobileMenu();
+                    }
+                });
+
+                // Close mobile menu on clicking any nav link
+                const navLinks = mobileNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        setTimeout(closeMobileMenu, 100);
+                    });
+                });
+
+                function closeMobileMenu() {
+                    mobileNav.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }
             }
         });
     </script>
@@ -90,7 +94,7 @@
     <main class="main-content">
         <!-- Hero Section -->
         <section class="relative h-screen flex items-center justify-center text-white text-center">
-            <img src="podcast-hero.jpg" alt="Podcast Background" class="absolute inset-0 w-full h-full object-cover">
+            <img src="podcast-hero.jpg" alt="Background of The Global Couch Podcast" class="absolute inset-0 w-full h-full object-cover">
             <div class="relative z-10 p-8">
                 <h1 class="text-4xl font-bold text-pink-500">The Global Couch</h1>
                 <p class="text-lg mt-2">Exploring Stories from Around the World</p>
@@ -176,14 +180,14 @@
             <div>
                 <h4 class="text-lg font-semibold text-pink-500">Connect</h4>
                 <div class="mt-2 space-x-4">
-                    <a href="https://www.linkedin.com/company/the-global-couch-podcast/" class="text-blue-500 text-2xl"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/the-global-couch-podcast/" class="text-blue-500 text-2xl"><i class="fab fa-linkedin"></i></a>
                     <a href="#" class="text-blue-500 text-2xl"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="text-blue-500 text-2xl"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
         <div class="text-center mt-6">
-            <p>&copy; 2025 The Global Couch Podcast. All rights reserved.</p>
+            <p>&copy; <span id="current-year"></span> The Global Couch Podcast. All rights reserved.</p>
         </div>
     </footer>
 
